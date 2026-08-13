@@ -1,0 +1,374 @@
+@import "tailwindcss";
+
+:root {
+  --paper: #f4f4f2;
+  --ink: #111111;
+  --muted: #6b6b6b;
+  --line: #e4e4e0;
+  --accent: #3d6b4a;
+  --wash: transparent;
+  --grain: 0.03;
+  --cursor: #111111;
+  --panel: #ecece8;
+}
+
+.dark {
+  --paper: #0a0a0a;
+  --ink: #f4f4f4;
+  --muted: #9a9a9a;
+  --line: #222222;
+  --accent: #c6e07a;
+  --wash: transparent;
+  --grain: 0.08;
+  --cursor: #c6e07a;
+  --panel: #141414;
+}
+
+html[data-climate="rain"] {
+  --wash: color-mix(in srgb, #6a8aa8 16%, transparent);
+}
+html[data-climate="snow"] {
+  --wash: color-mix(in srgb, #c9d6e4 18%, transparent);
+}
+html[data-climate="heat"] {
+  --wash: color-mix(in srgb, #e08a4a 14%, transparent);
+}
+html[data-climate="autumn"] {
+  --wash: color-mix(in srgb, #c4843c 12%, transparent);
+}
+html[data-climate="spring"] {
+  --wash: color-mix(in srgb, #7aa87a 12%, transparent);
+}
+html[data-climate="mist"] {
+  --wash: color-mix(in srgb, #9aa4a8 14%, transparent);
+}
+html[data-climate="clear"] {
+  --wash: color-mix(in srgb, #d4c4a0 6%, transparent);
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-panel: var(--panel);
+  --font-sans: var(--font-sans-ui);
+  --font-mono: var(--font-ibm);
+  --font-display: var(--font-serif);
+}
+
+html {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+body {
+  font-family: var(--font-sans-ui), ui-sans-serif, system-ui, sans-serif;
+  min-height: 100%;
+  background: transparent;
+  color: var(--ink);
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-serif), "Times New Roman", serif;
+}
+
+.cli-root h1,
+.cli-root h2,
+.cli-root h3 {
+  font-family: var(--font-ibm), ui-monospace, monospace;
+}
+
+body::before {
+  display: none;
+}
+
+.dark body::before {
+  mix-blend-mode: overlay;
+}
+
+.grid-paper {
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--ink) 12%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--ink) 12%, transparent) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+@keyframes rain-fall {
+  from {
+    transform: translateY(-20vh);
+  }
+  to {
+    transform: translateY(110vh);
+  }
+}
+
+@keyframes snow-drift {
+  from {
+    transform: translate3d(0, -10vh, 0);
+  }
+  to {
+    transform: translate3d(40px, 110vh, 0);
+  }
+}
+
+@keyframes bird-fly {
+  from {
+    transform: translateX(-12vw) translateY(0);
+  }
+  to {
+    transform: translateX(112vw) translateY(-18px);
+  }
+}
+
+@keyframes aurora-shift {
+  0% {
+    opacity: 0.35;
+    transform: translateX(-8%) scaleY(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateX(8%) scaleY(1.08);
+  }
+  100% {
+    opacity: 0.35;
+    transform: translateX(-8%) scaleY(1);
+  }
+}
+
+@keyframes thunder-flash {
+  0%,
+  92%,
+  100% {
+    opacity: 0;
+  }
+  93% {
+    opacity: 0.55;
+  }
+  95% {
+    opacity: 0.08;
+  }
+  97% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes tape-play {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 200% 40%;
+  }
+}
+
+.scene-rain-drop {
+  animation: rain-fall linear infinite;
+}
+
+.scene-snow {
+  animation: snow-drift linear infinite;
+}
+
+.scene-bird {
+  animation: bird-fly linear infinite;
+}
+
+.scene-aurora {
+  animation: aurora-shift 14s ease-in-out infinite;
+}
+
+@keyframes cloud-drift {
+  from {
+    transform: translateX(-30vw);
+  }
+  to {
+    transform: translateX(110vw);
+  }
+}
+
+.scene-cloud {
+  animation: cloud-drift linear infinite;
+}
+
+@keyframes leaf-fall {
+  from {
+    transform: translate3d(0, -12vh, 0) rotate(0deg);
+  }
+  to {
+    transform: translate3d(48px, 112vh, 0) rotate(220deg);
+  }
+}
+
+.scene-leaf {
+  animation: leaf-fall linear infinite;
+}
+
+@keyframes sun-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+.scene-sun {
+  animation: sun-pulse 6s ease-in-out infinite;
+}
+
+.avatar-spin {
+  perspective: 700px;
+}
+
+.avatar-coin {
+  transform-style: preserve-3d;
+  transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.avatar-spin:hover .avatar-coin,
+.avatar-spin:focus-visible .avatar-coin {
+  transform: rotateY(360deg);
+}
+
+.avatar-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+}
+
+.avatar-face-back {
+  transform: rotateY(180deg);
+}
+
+html.cursor-none,
+html.cursor-none * {
+  cursor: none !important;
+}
+
+.glass-glaze {
+  --gx: 50%;
+  --gy: 50%;
+  position: relative;
+}
+
+.glass-glaze::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  opacity: 0;
+  background: radial-gradient(
+    420px circle at var(--gx) var(--gy),
+    color-mix(in srgb, white 20%, transparent),
+    transparent 42%
+  );
+  transition: opacity 0.2s ease;
+}
+
+.glass-glaze:hover::after,
+.glass-glaze:focus-within::after {
+  opacity: 1;
+}
+
+.robot-3d {
+  transform-style: preserve-3d;
+  perspective: 520px;
+}
+
+.robot-head {
+  transform-style: preserve-3d;
+}
+
+.robot-jump {
+  animation: robot-hop 3.4s ease-in-out infinite;
+  transform-origin: 50% 100%;
+}
+
+@keyframes robot-hop {
+  0%,
+  72%,
+  100% {
+    transform: translateY(0);
+  }
+  78% {
+    transform: translateY(-18px);
+  }
+  84% {
+    transform: translateY(0);
+  }
+  88% {
+    transform: translateY(-8px);
+  }
+  94% {
+    transform: translateY(0);
+  }
+}
+
+.tape {
+  background-size: 200% 200%;
+  animation: tape-play 8s linear infinite paused;
+}
+
+.group:hover .tape,
+.tape.is-playing {
+  animation-play-state: running;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .scene-rain-drop,
+  .scene-snow,
+  .scene-bird,
+  .scene-aurora,
+  .scene-thunder,
+  .scene-cloud,
+  .scene-leaf,
+  .scene-sun,
+  .tape,
+  .avatar-coin,
+  .robot-jump {
+    animation: none !important;
+    transition: none !important;
+  }
+  .avatar-spin:hover .avatar-coin,
+  .avatar-spin:focus-visible .avatar-coin {
+    transform: none;
+  }
+}
+
+@media print {
+  nav,
+  [data-chrome],
+  [data-cursor],
+  [data-palette],
+  [data-cli],
+  [data-dock],
+  [data-progress],
+  [data-atmosphere],
+  [data-robot] {
+    display: none !important;
+  }
+  body::before {
+    display: none;
+  }
+  a[href]::after {
+    content: none !important;
+  }
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--paper);
+}

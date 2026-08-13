@@ -1,0 +1,11 @@
+---
+title: Climate without a permission prompt
+date: "2026-05-22"
+description: City-level weather from the request, never from GPS.
+---
+
+Browsers do not put coordinates in HTTP. Precise location always asks. We skip the ask.
+
+The server reads Vercel geo headers, or a coarse IP lookup in development, then Open-Meteo. VPN cities are expected. Atmosphere still works.
+
+This is a stand-in article for the climate layer on this site.
