@@ -1,3 +1,12 @@
+function resolveSiteUrl() {
+  const explicit = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (explicit) return explicit.replace(/\/$/, "");
+  const vercelHost =
+    process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim() || process.env.VERCEL_URL?.trim();
+  if (vercelHost) return `https://${vercelHost.replace(/^https?:\/\//, "")}`;
+  return "http://localhost:3000";
+}
+
 export const site = {
   name: "Omm",
   role: "Software Engineer",
@@ -8,7 +17,7 @@ export const site = {
   description:
     "Omm is a software engineer in Bengaluru. Portfolio of shipped work, writing, and experiments.",
   email: "omm@example.com",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  url: resolveSiteUrl(),
   avatar: "/avatar.svg",
   headlineVerbs: ["build", "ship", "design", "edit"],
   headlineObject: "operator tools that stay quiet",
@@ -346,7 +355,7 @@ export const resume = {
 } as const;
 
 export const uptimeTargets = [
-  { name: "This site", url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000" },
+  { name: "This site", url: resolveSiteUrl() },
   { name: "Ledger Lane", url: "https://example.com" },
   { name: "Signal Garden", url: "https://example.com" },
 ] as const;

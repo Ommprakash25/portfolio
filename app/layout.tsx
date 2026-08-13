@@ -28,7 +28,7 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(site.url),
+  metadataBase: new URL(site.url || "http://localhost:3000"),
   title: {
     default: `${site.name} — ${site.role}`,
     template: `%s · ${site.name}`,
