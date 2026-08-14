@@ -280,40 +280,6 @@ html.cursor-none * {
   opacity: 1;
 }
 
-.robot-3d {
-  transform-style: preserve-3d;
-  perspective: 520px;
-}
-
-.robot-head {
-  transform-style: preserve-3d;
-}
-
-.robot-jump {
-  animation: robot-hop 3.4s ease-in-out infinite;
-  transform-origin: 50% 100%;
-}
-
-@keyframes robot-hop {
-  0%,
-  72%,
-  100% {
-    transform: translateY(0);
-  }
-  78% {
-    transform: translateY(-18px);
-  }
-  84% {
-    transform: translateY(0);
-  }
-  88% {
-    transform: translateY(-8px);
-  }
-  94% {
-    transform: translateY(0);
-  }
-}
-
 .tape {
   background-size: 200% 200%;
   animation: tape-play 8s linear infinite paused;
@@ -337,8 +303,7 @@ html.cursor-none * {
   .scene-leaf,
   .scene-sun,
   .tape,
-  .avatar-coin,
-  .robot-jump {
+  .avatar-coin {
     animation: none !important;
     transition: none !important;
   }
@@ -356,8 +321,7 @@ html.cursor-none * {
   [data-cli],
   [data-dock],
   [data-progress],
-  [data-atmosphere],
-  [data-robot] {
+  [data-atmosphere] {
     display: none !important;
   }
   body::before {

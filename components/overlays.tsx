@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { Atmosphere } from "./atmosphere";
 import { CommandPalette } from "./command-palette";
 import { EditorialCursor } from "./editorial-cursor";
-import { RobotChat } from "./robot-chat";
 import { ScrollProgress } from "./scroll-progress";
 import { SearchChip } from "./search-chip";
 import { SideDock } from "./side-dock";
@@ -36,7 +35,6 @@ export function Overlays() {
       <SideDock />
       <EditorialCursor />
       <SearchChip onOpen={openPalette} />
-      <RobotChat />
       <CommandPalette open={palette} onOpenChange={setPalette} />
     </>
   );
