@@ -29,7 +29,7 @@ export default function HomePage() {
   const posts = getPosts().slice(0, 3);
 
   return (
-    <main className="pr-0 md:pr-20">
+    <main className="pb-24 md:pr-24 md:pb-0">
       <Hero />
       <div className="mx-auto max-w-4xl px-4 md:px-6">
         <SignalsRail />
@@ -40,22 +40,22 @@ export default function HomePage() {
         <GithubContributions />
       </Reveal>
 
-      <section id="work" className="mx-auto max-w-6xl scroll-mt-24 overflow-visible px-4 py-16 md:px-6">
+      <section id="projects" className="mx-auto max-w-6xl scroll-mt-24 overflow-visible px-4 py-16 md:px-6">
         <SectionKicker kicker="Portfolio" title="Featured Projects" />
         <ProjectStack projects={featured} />
         <p className="mt-10">
-          <Link href="/work" className="text-sm text-muted hover:text-ink">
+          <Link href="/projects" className="text-sm text-muted hover:text-ink">
             View all projects →
           </Link>
         </p>
       </section>
 
-      <Reveal className="mx-auto max-w-4xl px-4 py-16 md:px-6">
-        <SectionKicker kicker="Journal" title="Writing" />
+      <Reveal id="blogs" className="mx-auto max-w-4xl scroll-mt-24 px-4 py-16 md:px-6">
+        <SectionKicker kicker="Journal" title="Blogs" />
         <ul className="space-y-5">
           {posts.map((p) => (
             <li key={p.slug}>
-              <Link href={`/writing/${p.slug}`} className="group block">
+              <Link href={`/blogs/${p.slug}`} className="group block">
                 <h3 className="font-medium group-hover:text-accent">{p.title}</h3>
                 <p className="mt-1 text-sm text-muted">
                   {p.date} · {p.description}
@@ -65,13 +65,13 @@ export default function HomePage() {
           ))}
         </ul>
         <p className="mt-6">
-          <Link href="/writing" className="text-sm text-muted hover:text-ink">
-            All writing →
+          <Link href="/blogs" className="text-sm text-muted hover:text-ink">
+            All blogs →
           </Link>
         </p>
       </Reveal>
 
-      <Reveal className="mx-auto max-w-4xl px-4 py-16 md:px-6">
+      <Reveal id="games" className="mx-auto max-w-4xl scroll-mt-24 px-4 py-16 md:px-6">
         <SectionKicker kicker="Play" title="Games" />
         <div className="grid gap-4 sm:grid-cols-3">
           {games.map((g) => (

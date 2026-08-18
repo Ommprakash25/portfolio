@@ -4,7 +4,6 @@ import { JsonLd } from "@/components/json-ld";
 import { Overlays } from "@/components/overlays";
 import { Providers } from "@/components/providers";
 import { SiteFooter } from "@/components/site-footer";
-import { SiteNav } from "@/components/site-nav";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { site } from "@/lib/content";
 import "./globals.css";
@@ -62,7 +61,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Providers>
           <SmoothScroll>
             <JsonLd />
-            <SiteNav />
             <div className="relative z-10 flex flex-1 flex-col">{children}</div>
             <div className="relative z-10">
               <SiteFooter />

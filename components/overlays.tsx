@@ -26,7 +26,7 @@ export function Overlays() {
 
   const openPalette = useCallback(() => setPalette(true), []);
 
-  if (path === "/cli") return null;
+  if (path === "/cmd") return null;
 
   return (
     <>

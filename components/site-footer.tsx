@@ -6,11 +6,11 @@ import { site, socials } from "@/lib/content";
 
 export function SiteFooter() {
   const path = usePathname();
-  if (path === "/cli") return null;
+  if (path === "/cmd") return null;
 
   return (
     <footer className="print:hidden mt-auto border-t border-line/70">
-      <div className="mx-auto flex max-w-4xl flex-col gap-4 px-4 py-8 text-sm text-muted md:flex-row md:items-end md:justify-between md:px-6 md:pr-24">
+      <div className="mx-auto flex max-w-4xl flex-col gap-4 px-4 py-8 text-sm text-muted md:flex-row md:items-end md:justify-between md:px-6">
         <p>
           {site.name} · {site.location}
         </p>

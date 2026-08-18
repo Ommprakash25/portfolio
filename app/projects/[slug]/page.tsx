@@ -11,17 +11,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const project = projects.find((p) => p.slug === slug);
   if (!project) return {};
-  return pageMeta(project.title, project.summary, `/work/${slug}`);
+  return pageMeta(project.title, project.summary, `/projects/${slug}`);
 }
 
-export default async function WorkCase({ params }: { params: Promise<{ slug: string }> }) {
+export default async function ProjectCase({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const project = projects.find((p) => p.slug === slug);
   if (!project) notFound();
-  const url = `${site.url}/work/${project.slug}`;
+  const url = `${site.url}/projects/${project.slug}`;
 
   return (
-    <main className="mx-auto max-w-2xl px-4 pt-28 pb-16 md:px-6 md:pr-24">
+    <main className="mx-auto max-w-2xl px-4 pt-16 pb-28 md:px-6">
       <ProjectJsonLd name={project.title} description={project.summary} url={project.url ?? url} />
       <p className="font-mono text-xs text-muted">
         {project.year} · {project.stack.join(" · ")}

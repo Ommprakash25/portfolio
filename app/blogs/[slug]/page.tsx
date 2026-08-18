@@ -11,16 +11,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const post = getPost(slug);
   if (!post) return {};
-  return pageMeta(post.title, post.description, `/writing/${slug}`);
+  return pageMeta(post.title, post.description, `/blogs/${slug}`);
 }
 
-export default async function WritingPost({ params }: { params: Promise<{ slug: string }> }) {
+export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const post = getPost(slug);
   if (!post) notFound();
 
   return (
-    <main className="mx-auto max-w-2xl px-4 pt-28 pb-16 md:px-6 md:pr-24">
+    <main className="mx-auto max-w-2xl px-4 pt-16 pb-28 md:px-6">
       <p className="font-mono text-xs text-muted">{post.date}</p>
       <h1 className="mt-2 text-4xl font-semibold tracking-tight">{post.title}</h1>
       <article className="mt-10 space-y-5 text-lg leading-relaxed [&_p]:text-ink">
