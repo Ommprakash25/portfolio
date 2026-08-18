@@ -8,24 +8,36 @@ export function GlassSurface({
   children,
   className,
   style,
+  onMouseMove,
+  onMouseLeave,
 }: {
   children: ReactNode;
   className?: string;
   style?: CSSProperties;
+  onMouseMove?: (e: MouseEvent<HTMLDivElement>) => void;
+  onMouseLeave?: (e: MouseEvent<HTMLDivElement>) => void;
 }) {
   const ref = useRef<HTMLDivElement>(null);
 
   const onMove = (e: MouseEvent<HTMLDivElement>) => {
     const box = ref.current?.getBoundingClientRect();
-    if (!box) return;
-    const x = ((e.clientX - box.left) / box.width) * 100;
-    const y = ((e.clientY - box.top) / box.height) * 100;
-    ref.current?.style.setProperty("--gx", `${x}%`);
-    ref.current?.style.setProperty("--gy", `${y}%`);
+    if (box) {
+      const x = ((e.clientX - box.left) / box.width) * 100;
+      const y = ((e.clientY - box.top) / box.height) * 100;
+      ref.current?.style.setProperty("--gx", `${x}%`);
+      ref.current?.style.setProperty("--gy", `${y}%`);
+    }
+    onMouseMove?.(e);
   };
 
   return (
-    <div ref={ref} onMouseMove={onMove} className={cn("glass-glaze", className)} style={style}>
+    <div
+      ref={ref}
+      onMouseMove={onMove}
+      onMouseLeave={onMouseLeave}
+      className={cn("glass-glaze", className)}
+      style={style}
+    >
       {children}
     </div>
   );

@@ -24,7 +24,7 @@ const HELP = `commands
   skills            tech
   exp               experience
   social            links
-  open <route>      writing | work | kit | games | resume | building | home
+  open <route>      blogs | projects | games | resume | building | home
   day | night
   weather live|off|rain|summer|autumn|winter
   gui               leave the terminal
@@ -100,9 +100,8 @@ export default function CliPage() {
       } else if (cmd.startsWith("open ")) {
         const dest = cmd.slice(5).trim();
         const map: Record<string, string> = {
-          work: "/work",
-          writing: "/writing",
-          kit: "/kit",
+          projects: "/projects",
+          blogs: "/blogs",
           games: "/games",
           resume: "/resume",
           building: "/building",

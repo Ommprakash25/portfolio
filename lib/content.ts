@@ -36,9 +36,8 @@ export const socials = {
 } as const;
 
 export const nav = [
-  { href: "/writing", label: "Writing" },
-  { href: "/work", label: "Work" },
-  { href: "/kit", label: "Kit" },
+  { href: "/projects", label: "Projects" },
+  { href: "/blogs", label: "Blogs" },
   { href: "/games", label: "Games" },
 ] as const;
 
@@ -250,45 +249,6 @@ export const games = [
   },
 ] as const;
 
-export const kit = [
-  {
-    slug: "keyboard",
-    name: "Keyboard",
-    detail: "Low-profile board, quiet switches — for long copy and longer diffs.",
-    image: "/kit/keyboard.svg",
-  },
-  {
-    slug: "notebook",
-    name: "Notebook",
-    detail: "A5 ruled. Specs start on paper; code is the second draft.",
-    image: "/kit/notebook.svg",
-  },
-  {
-    slug: "display",
-    name: "Display",
-    detail: "One large panel. No second monitor religion.",
-    image: "/kit/display.svg",
-  },
-  {
-    slug: "editor",
-    name: "Editor",
-    detail: "Cursor. Terminal nearby. Browser last.",
-    image: "/kit/editor.svg",
-  },
-  {
-    slug: "headphones",
-    name: "Headphones",
-    detail: "Closed-back for offices. Open-back at home. Midnight City is not a requirement.",
-    image: "/kit/headphones.svg",
-  },
-  {
-    slug: "lamp",
-    name: "Lamp",
-    detail: "Warm, dimmable, aimed at the desk — not the webcam.",
-    image: "/kit/lamp.svg",
-  },
-] as const;
-
 export const building = [
   {
     date: "2026-08-12",
@@ -317,7 +277,7 @@ export const building = [
   },
   {
     date: "2026-05-18",
-    title: "Shipped /cli",
+    title: "Shipped /cmd",
     note: "ASCII OMM, dev@omm:~$, dock terminal icon.",
   },
   {

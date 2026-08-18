@@ -1,7 +1,7 @@
 # Omm
 
-Software engineer in Bengaluru. Portfolio: work, writing, kit, games, resume.
+Software engineer in Bengaluru. Portfolio: projects, blogs, games, resume.
 
 Site: set NEXT_PUBLIC_SITE_URL after deploy.
 
-Pages: / /work /writing /kit /games /resume /building /cli
+Pages: / /projects /blogs /games /resume /building /cmd

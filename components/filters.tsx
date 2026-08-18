@@ -2,6 +2,16 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useTheme } from "next-themes";
+import {
+  Check,
+  CloudOff,
+  CloudRain,
+  CloudSun,
+  Leaf,
+  Moon,
+  Snowflake,
+  Sun,
+} from "lucide-react";
 import { MANUAL_SCENES, type SceneMode } from "@/lib/climate";
 import { cn } from "@/lib/utils";
 import { useWeather } from "./providers";
@@ -16,6 +26,16 @@ function modeLabel(mode: SceneMode, liveText: string | null) {
   return "Climate";
 }
 
+function WeatherIcon({ mode }: { mode: SceneMode }) {
+  const cls = "block size-4";
+  if (mode === "storm") return <CloudRain className={cls} strokeWidth={1.7} />;
+  if (mode === "summer") return <Sun className={cls} strokeWidth={1.7} />;
+  if (mode === "autumn") return <Leaf className={cls} strokeWidth={1.7} />;
+  if (mode === "winter") return <Snowflake className={cls} strokeWidth={1.7} />;
+  if (mode === "off") return <CloudOff className={cls} strokeWidth={1.7} />;
+  return <CloudSun className={cls} strokeWidth={1.7} />;
+}
+
 export function Filters() {
   const { resolvedTheme, setTheme } = useTheme();
   const { sceneMode, setSceneMode, climate } = useWeather();
@@ -23,6 +43,10 @@ export function Filters() {
   const wrap = useRef<HTMLDivElement>(null);
   const dark = resolvedTheme !== "light";
   const liveText = climate ? `${climate.city} · ${climate.condition}` : null;
+
+  useEffect(() => {
+    setOpen(false);
+  }, [resolvedTheme]);
 
   useEffect(() => {
     const onDoc = (e: MouseEvent) => {
@@ -38,58 +62,57 @@ export function Filters() {
   ];
 
   return (
-    <div className="flex items-center gap-1">
+    <div ref={wrap} className="relative z-10 flex flex-row items-center gap-1 md:flex-col">
       <button
         type="button"
-        onClick={() => setTheme(dark ? "light" : "dark")}
+        title={modeLabel(sceneMode, liveText)}
+        onClick={() => setOpen((v) => !v)}
         className={cn(
-          "rounded-lg px-2.5 py-1.5 text-[11px] font-medium tracking-wide",
-          "border border-line/70 bg-panel/50 text-muted backdrop-blur-md hover:text-ink",
+          "relative flex size-8 items-center justify-center rounded-full",
+          sceneMode !== "off"
+            ? "bg-[#2563eb] text-white"
+            : "text-ink/70 hover:text-ink dark:text-white/80 dark:hover:text-white",
         )}
+        aria-expanded={open}
+        aria-haspopup="listbox"
+        aria-label="Climate scene"
+      >
+        <WeatherIcon mode={sceneMode} />
+      </button>
+      <button
+        type="button"
+        title={dark ? "Day" : "Night"}
+        onClick={() => setTheme(dark ? "light" : "dark")}
+        className="flex size-8 items-center justify-center rounded-full text-ink/70 hover:text-ink dark:text-white/80 dark:hover:text-white"
         aria-label="Toggle day and night"
       >
-        {dark ? "Night" : "Day"}
+        {dark ? <Moon className="size-4" strokeWidth={1.7} /> : <Sun className="size-4" strokeWidth={1.7} />}
       </button>
-      <div ref={wrap} className="relative">
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          className={cn(
-            "max-w-[11rem] truncate rounded-lg px-2.5 py-1.5 text-[11px] font-medium tracking-wide",
-            "border border-line/70 bg-panel/50 text-muted backdrop-blur-md hover:text-ink",
-            sceneMode !== "off" && "text-ink",
-          )}
-          aria-expanded={open}
-          aria-haspopup="listbox"
-          aria-label="Climate scene"
+      {open ? (
+        <ul
+          role="listbox"
+          className="absolute bottom-full left-1/2 z-50 mb-3 w-40 -translate-x-1/2 rounded-xl border border-white/15 bg-neutral-950/95 py-1 text-[11px] text-white shadow-xl backdrop-blur-md md:top-auto md:right-full md:bottom-0 md:left-auto md:mb-0 md:mr-3 md:translate-x-0"
         >
-          {modeLabel(sceneMode, liveText)}
-        </button>
-        {open ? (
-          <ul
-            role="listbox"
-            className="absolute right-0 mt-1 min-w-[9.5rem] overflow-hidden rounded-lg border border-line/70 bg-panel/95 py-1 text-[11px] shadow-lg backdrop-blur-md"
-          >
-            {options.map((opt) => (
-              <li key={opt.id}>
-                <button
-                  type="button"
-                  className={cn(
-                    "w-full px-3 py-1.5 text-left hover:bg-paper/80",
-                    sceneMode === opt.id && "text-[#2563eb]",
-                  )}
-                  onClick={() => {
-                    setSceneMode(opt.id);
-                    setOpen(false);
-                  }}
-                >
-                  {opt.label}
-                </button>
-              </li>
-            ))}
-          </ul>
-        ) : null}
-      </div>
+          {options.map((opt) => (
+            <li key={opt.id} role="option" aria-selected={sceneMode === opt.id}>
+              <button
+                type="button"
+                className={cn(
+                  "flex w-full items-center justify-between px-3 py-1.5 text-left text-white/80 hover:bg-white/10 hover:text-white",
+                  sceneMode === opt.id && "bg-[#2563eb] text-white hover:bg-[#2563eb] hover:text-white",
+                )}
+                onClick={() => {
+                  setSceneMode(opt.id);
+                  setOpen(false);
+                }}
+              >
+                <span>{opt.label}</span>
+                {sceneMode === opt.id ? <Check className="size-3.5" strokeWidth={2.2} /> : null}
+              </button>
+            </li>
+          ))}
+        </ul>
+      ) : null}
     </div>
   );
 }

@@ -9,7 +9,7 @@ export const metadata = pageMeta(
 
 export default function GamesPage() {
   return (
-    <main className="mx-auto max-w-4xl px-4 pt-28 pb-20 md:px-6 md:pr-24">
+    <main className="mx-auto max-w-4xl px-4 pt-16 pb-28 md:px-6">
       <p className="text-[11px] tracking-[0.18em] text-muted uppercase">Play</p>
       <h1 className="mt-2 text-4xl font-semibold tracking-tight">games</h1>
       <p className="mt-3 max-w-xl text-muted">

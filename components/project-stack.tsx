@@ -116,7 +116,7 @@ export function ProjectStack({ projects }: { projects: Project[] }) {
                   </a>
                 ) : null}
                 <Link
-                  href={`/work/${project.slug}`}
+                  href={`/projects/${project.slug}`}
                   className="inline-flex h-12 items-center justify-center rounded-xl border border-line px-6 text-sm font-medium"
                 >
                   Case study

@@ -61,7 +61,8 @@ export function Hero() {
       initial={reduce ? false : "hidden"}
       animate="show"
       variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1 } } }}
-      className="mx-auto max-w-4xl px-4 pt-28 pb-16 md:px-6 md:pt-32"
+      className="mx-auto max-w-4xl px-4 pt-16 pb-16 md:px-6 md:pt-20"
+      id="home"
     >
       <motion.div
         variants={fade}
@@ -161,7 +162,7 @@ export function Hero() {
       </motion.ul>
       <motion.a
         variants={fade}
-        href="#work"
+        href="#projects"
         className="mt-12 inline-flex items-center gap-2 text-sm text-muted hover:text-ink"
       >
         <span className="inline-block size-1.5 rounded-full bg-accent" />

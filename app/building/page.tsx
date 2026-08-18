@@ -9,7 +9,7 @@ export const metadata = pageMeta(
 
 export default function BuildingPage() {
   return (
-    <main className="mx-auto max-w-2xl px-4 pt-28 pb-16 md:px-6 md:pr-24">
+    <main className="mx-auto max-w-2xl px-4 pt-16 pb-28 md:px-6">
       <h1 className="text-4xl font-semibold tracking-tight">Building</h1>
       <ol className="mt-12 border-l border-line pl-6">
         {building.map((b) => (

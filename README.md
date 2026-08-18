@@ -18,8 +18,8 @@ Next.js App Router, TypeScript, Tailwind, Framer Motion, Lenis, next-themes, MDX
 
 - Day / Night and independent Weather wash (IP + Open-Meteo, no GPS prompt)
 - Signals rail: GitHub, WakaTime, Steam, Spotify, Trakt, availability, uptime, presence
-- Writing (MDX), kit, games (external hosts), work case studies, printable resume, building changelog
-- Command palette (⌘K) and full `/cli` terminal
+- Writing (MDX), games (external hosts), work case studies, printable resume, building changelog
+- Command palette (⌘K) and full `/cmd` terminal
 - Random load atmospheres (birds, storm, aurora, winter) + right glass dock
 - SEO: canonical URLs, JSON-LD, Open Graph, sitemap, robots, `llms.txt`
 

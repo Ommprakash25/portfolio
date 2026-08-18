@@ -10,7 +10,7 @@ export const metadata = pageMeta(
 
 export default function ResumePage() {
   return (
-    <main className="mx-auto max-w-2xl px-4 pt-28 pb-16 md:px-6 md:pr-24">
+    <main className="mx-auto max-w-2xl px-4 pt-16 pb-28 md:px-6">
       <div className="print:hidden mb-8 flex items-center justify-between text-sm">
         <p className="text-muted">Print this page for a paper copy.</p>
         <PrintButton />

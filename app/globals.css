@@ -280,6 +280,72 @@ html.cursor-none * {
   opacity: 1;
 }
 
+.dock-glass {
+  position: relative;
+  isolation: isolate;
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--panel) 38%, transparent);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid color-mix(in srgb, white 42%, transparent);
+  box-shadow:
+    0 10px 40px color-mix(in srgb, black 28%, transparent),
+    inset 0 1px 0 color-mix(in srgb, white 55%, transparent),
+    inset 0 -1px 0 color-mix(in srgb, white 10%, transparent);
+}
+
+.dark .dock-glass {
+  background: color-mix(in srgb, #121214 48%, transparent);
+  border-color: color-mix(in srgb, white 22%, transparent);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.dock-glass::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, white 32%, transparent) 0%,
+    color-mix(in srgb, white 8%, transparent) 22%,
+    transparent 52%
+  );
+}
+
+.dark .dock-glass::before {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(255, 255, 255, 0.05) 26%,
+    transparent 55%
+  );
+}
+
+.dock-glass.glass-glaze::after {
+  z-index: 0;
+}
+
+.dock-glass > * {
+  position: relative;
+  z-index: 1;
+}
+
+.dock-glass > .dock-blob-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.dock-goo {
+  filter: url("#dock-goo");
+}
+
 .tape {
   background-size: 200% 200%;
   animation: tape-play 8s linear infinite paused;

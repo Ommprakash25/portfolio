@@ -28,7 +28,7 @@ export function ProjectCard({ project, className }: { project: Project; classNam
       )}
     >
       <article className="group relative z-1 flex h-full flex-col" onMouseEnter={onEnter} onMouseLeave={onLeave}>
-        <Link href={`/work/${project.slug}`} className="relative block overflow-hidden">
+        <Link href={`/projects/${project.slug}`} className="relative block overflow-hidden">
           {project.video ? (
             <video
               ref={videoRef}
@@ -74,7 +74,7 @@ export function ProjectCard({ project, className }: { project: Project; classNam
               </a>
             ) : null}
             <Link
-              href={`/work/${project.slug}`}
+              href={`/projects/${project.slug}`}
               className="rounded-full border border-line px-3 py-1 text-[10px] font-medium"
             >
               Case study
